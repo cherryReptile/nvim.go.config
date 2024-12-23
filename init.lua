@@ -33,6 +33,5 @@ require "options"
 require "nvchad.autocmds"
 
 vim.schedule(function()
-  require "keymaps"
   require "mappings"
 end)
