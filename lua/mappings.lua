@@ -21,7 +21,6 @@ map('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_wor
 })
 
 -- go-nvim
-go = require("go")
 map("n", "<leader>db", "<cmd>GoBreakToggle<CR>", {desc = "Break toggle"})
 map("n", "<leader>du", "<cmd>GoDebug<CR>", {desc = "Up debug UI"})
 
