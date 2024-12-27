@@ -23,6 +23,8 @@ map('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_wor
 -- go-nvim
 map("n", "<leader>db", "<cmd>GoBreakToggle<CR>", {desc = "Break toggle"})
 map("n", "<leader>du", "<cmd>GoDebug<CR>", {desc = "Up debug UI"})
+map("n", "<leader>tf", "<cmd>GoTestFile<CR>", {desc = "Run tests for current file"})
+map("n", "<leader>tp", "<cmd>GoTestPkg<CR>", {desc = "Run tests for current package"})
 
 -- neoscroll
 neoscroll = require("neoscroll")
