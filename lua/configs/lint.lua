@@ -2,6 +2,10 @@ local lint = require("lint")
 
 lint.linters_by_ft = {
     lua = { "luacheck" },
+    json = { "jsonlint" },
+    markdown = { "markdownlint" },
+    yml = { "yamllint" },
+    yaml = { "yamllint" },
 }
 
 lint.linters.luacheck.args = {
