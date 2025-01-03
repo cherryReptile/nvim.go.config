@@ -26,12 +26,12 @@ require("lazy").setup({
 }, lazy_config)
 
 -- change neo-tree opts
-require('nvim-tree').setup({
-    filters = {
-      dotfiles = false,
-      git_ignored = false,
-    }
-})
+require("nvim-tree").setup {
+  filters = {
+    dotfiles = false,
+    git_ignored = false,
+  },
+}
 
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")

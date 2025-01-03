@@ -2,12 +2,12 @@ local on_attach = require("nvchad.configs.lspconfig").on_attach
 local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
-local lspconfig = require("lspconfig")
+local lspconfig = require "lspconfig"
 
 -- list of all servers configured.
 lspconfig.servers = {
-    "lua_ls",
-    "gopls",
+  "lua_ls",
+  "gopls",
 }
 
 -- list of servers configured with default config.
@@ -15,83 +15,83 @@ local default_servers = {}
 
 -- lsps with default config
 for _, lsp in ipairs(default_servers) do
-    lspconfig[lsp].setup({
-        on_attach = on_attach,
-        on_init = on_init,
-        capabilities = capabilities,
-    })
-end
-
-lspconfig.gopls.setup({
-    on_attach = function(client, bufnr)
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.documentRangeFormattingProvider = false
-        on_attach(client, bufnr)
-    end,
-    on_init = on_init,
-    capabilities = capabilities,
-    cmd = { "gopls" },
-    filetypes = { "go", "gomod", "gotmpl", "gowork" },
-    root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
-    settings = {
-        gopls = {
-             gofumpt = true,
-            codelenses = {
-              gc_details = false,
-              generate = true,
-              regenerate_cgo = true,
-              run_govulncheck = true,
-              test = true,
-              tidy = true,
-              upgrade_dependency = true,
-              vendor = true,
-            },
-            hints = {
-              assignVariableTypes = false,
-              compositeLiteralFields = false,
-              compositeLiteralTypes = false,
-              constantValues = true,
-              functionTypeParameters = true,
-              parameterNames = true,
-              rangeVariableTypes = true,
-            },
-            analyses = {
-              nilness = true,
-              unusedparams = true,
-              unusedwrite = true,
-              useany = true,
-            },
-            usePlaceholders = true,
-            completeUnimported = true,
-            staticcheck = true,
-            directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
-            semanticTokens = true, 
-        },
-    },
-})
-
-lspconfig.lua_ls.setup({
+  lspconfig[lsp].setup {
     on_attach = on_attach,
     on_init = on_init,
     capabilities = capabilities,
+  }
+end
 
-    settings = {
-        Lua = {
-            diagnostics = {
-                enable = false, -- Disable all diagnostics from lua_ls
-                -- globals = { "vim" },
-            },
-            workspace = {
-                library = {
-                    vim.fn.expand("$VIMRUNTIME/lua"),
-                    vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
-                    vim.fn.stdpath("data") .. "/lazy/ui/nvchad_types",
-                    vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
-                    "${3rd}/love2d/library",
-                },
-                maxPreload = 100000,
-                preloadFileSize = 10000,
-            },
-        },
+lspconfig.gopls.setup {
+  on_attach = function(client, bufnr)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+    on_attach(client, bufnr)
+  end,
+  on_init = on_init,
+  capabilities = capabilities,
+  cmd = { "gopls" },
+  filetypes = { "go", "gomod", "gotmpl", "gowork" },
+  root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
+  settings = {
+    gopls = {
+      gofumpt = true,
+      codelenses = {
+        gc_details = false,
+        generate = true,
+        regenerate_cgo = true,
+        run_govulncheck = true,
+        test = true,
+        tidy = true,
+        upgrade_dependency = true,
+        vendor = true,
+      },
+      hints = {
+        assignVariableTypes = false,
+        compositeLiteralFields = false,
+        compositeLiteralTypes = false,
+        constantValues = true,
+        functionTypeParameters = true,
+        parameterNames = true,
+        rangeVariableTypes = true,
+      },
+      analyses = {
+        nilness = true,
+        unusedparams = true,
+        unusedwrite = true,
+        useany = true,
+      },
+      usePlaceholders = true,
+      completeUnimported = true,
+      staticcheck = true,
+      directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+      semanticTokens = true,
     },
-})
+  },
+}
+
+lspconfig.lua_ls.setup {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+
+  settings = {
+    Lua = {
+      diagnostics = {
+        enable = false, -- Disable all diagnostics from lua_ls
+        -- globals = { "vim" },
+      },
+      workspace = {
+        library = {
+          vim.fn.expand "$VIMRUNTIME/lua",
+          vim.fn.expand "$VIMRUNTIME/lua/vim/lsp",
+          vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
+          vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
+          "${3rd}/love2d/library",
+        },
+        maxPreload = 100000,
+        preloadFileSize = 10000,
+      },
+    },
+  },
+}

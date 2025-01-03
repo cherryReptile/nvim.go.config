@@ -1,6 +1,6 @@
 return {
   "nvim-pack/nvim-spectre",
-  config = function ()
-      require("configs.nvim-spectre")
-  end
+  config = function()
+    require "configs.nvim-spectre"
+  end,
 }
