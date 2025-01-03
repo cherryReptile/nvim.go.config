@@ -2,7 +2,6 @@ require "nvchad.options"
 
 -- add yours here!
 
--- vim.opt = 
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
   pattern = { "*" },
   command = "silent! wall",
@@ -26,4 +25,4 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.opt.relativenumber = true
--- o.cursorlineopt ='both' -- to enable cursorline!
+
